@@ -67,9 +67,14 @@ class Grid
     print "call:#{call_id} "
     print "#{guess_candidates.object_id}"
     old = guess_candidates.object_id
+
+    depth = Kernel.caller.select{|l| l.match /solve/}.count
+    print " @ depth #{depth}"
+
+
     guess_candidates.each_with_index do |candidate,i|
 
-      print " v #{guess_candidates.object_id} @ with_index:#{i}"
+      print " v #{guess_candidates.object_id} @ with_index:#{i} "
       print " ??? " if old!=guess_candidates.object_id
       print "call:#{call_id}"
       @@iteration += 1 
